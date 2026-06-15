@@ -93,11 +93,11 @@ exports.signup = async (req, res) => {
     let approved = ""
     approved === "Instructor" ? (approved = false) : (approved = true)
 
-    mailSender(
-      email,
-      "Welcome to Studynotion | CodeHelp",
-      signupSuccess(email, firstName)
-    )
+    // mailSender(
+    //   email,
+    //   "Welcome to Studynotion | CodeHelp",
+    //   signupSuccess(email, firstName)
+    // )
 
     // Create the Additional Profile For User
     const profileDetails = await Profile.create({
@@ -122,6 +122,7 @@ exports.signup = async (req, res) => {
       success: true,
       user,
       message: "User registered successfully",
+      otp: response.otp, // For testing purposes, remove this in production
     })
   } catch (error) {
     console.error(error)
@@ -197,11 +198,11 @@ exports.login = async (req, res) => {
     // ========================
     // Send OTP Email
     // ========================
-    await mailSender(
-      email,
-      "Verification Email",
-      otpTemplate(otp)
-    );
+    // await mailSender(
+    //   email,
+    //   "Verification Email",
+    //   otpTemplate(otp)
+    // );
 
     // ========================
     // Send Response
@@ -209,6 +210,7 @@ exports.login = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "OTP Sent Successfully",
+      otp: otp, // For testing purposes, remove this in production
     });
 
   } catch (error) {

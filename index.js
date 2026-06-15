@@ -16,7 +16,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // Setting up port number
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000; 
 
 
 
