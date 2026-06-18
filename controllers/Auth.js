@@ -253,16 +253,17 @@ exports.sendotp = async (req, res) => {
     });
 
     // Send OTP mail
-    await mailSender(
-      email,
-      "Verification Email",
-      otpTemplate(otp)
-    );
+    // await mailSender(
+    //   email,
+    //   "Verification Email",
+    //   otpTemplate(otp)
+    // );
 
     // Send response
     return res.status(200).json({
       success: true,
       message: "OTP Sent Successfully",
+      otp: otp, // For testing purposes, remove this in production
     });
 
   } catch (error) {
